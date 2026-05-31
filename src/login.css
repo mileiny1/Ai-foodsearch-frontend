@@ -1,0 +1,44 @@
+/* Login.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+
+.login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: #f5f2ee; }
+.login-wrap { display: grid; grid-template-columns: 1fr 1fr; max-width: 860px; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.12); }
+
+/* Hero */
+.login-hero { background: #1a0f00; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; overflow: hidden; min-height: 520px; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, #7a3a0a, #1a0f00 70%); }
+.hero-circles { position: absolute; inset: 0; }
+.c { position: absolute; border-radius: 50%; border: 1px solid rgba(255,180,60,0.12); }
+.c1 { width: 220px; height: 220px; top: -40px; left: -60px; }
+.c2 { width: 160px; height: 160px; top: 40px; left: 20px; }
+.c3 { width: 300px; height: 300px; bottom: -80px; right: -80px; border-color: rgba(255,180,60,0.07); }
+.dish-icon { position: absolute; top: 2rem; right: 2rem; font-size: 48px; z-index: 1; }
+.hero-tag { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #e8a84a; margin-bottom: 0.75rem; position: relative; z-index: 1; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #fff; line-height: 1.2; position: relative; z-index: 1; margin-bottom: 0.5rem; }
+.hero-title em { font-style: italic; color: #e8a84a; }
+.hero-sub { font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; position: relative; z-index: 1; }
+
+/* Form side */
+.login-form-side { background: #fff; padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+.login-brand { display: flex; align-items: center; gap: 8px; margin-bottom: 2rem; }
+.brand-dot { width: 28px; height: 28px; border-radius: 50%; background: #1a0f00; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.brand-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #1a0f00; }
+.form-heading { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1a0f00; margin-bottom: 0.25rem; }
+.form-sub { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #888; margin-bottom: 1.75rem; }
+.login-error { font-family: 'DM Sans', sans-serif; font-size: 13px; background: #fff3f3; border: 0.5px solid #f09595; color: #a32d2d; padding: 10px 14px; border-radius: 8px; margin-bottom: 1rem; }
+.login-field { margin-bottom: 1rem; }
+.login-field label { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+.login-field input { width: 100%; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; border: 0.5px solid #ddd; border-radius: 8px; background: #fafaf9; color: #1a0f00; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+.login-field input:focus { border-color: #c87a1a; box-shadow: 0 0 0 3px rgba(200,122,26,0.1); }
+.btn-login { width: 100%; padding: 11px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; background: #1a0f00; color: #e8a84a; border: none; border-radius: 8px; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+.btn-login:hover { background: #2d1a00; }
+.btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
+.login-divider { display: flex; align-items: center; gap: 12px; margin: 1.25rem 0; }
+.divider-line { flex: 1; height: 0.5px; background: #e8e8e8; }
+.divider-text { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #aaa; }
+.signup-text { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #666; text-align: center; }
+.signup-text a { color: #c87a1a; text-decoration: none; font-weight: 500; }
+.login-footer { margin-top: auto; padding-top: 1.5rem; border-top: 0.5px solid #eee; }
+.login-footer p { font-family: 'DM Sans', sans-serif; font-size: 11px; color: #aaa; text-align: center; }
+
+@media (max-width: 600px) { .login-wrap { grid-template-columns: 1fr; } .login-hero { display: none; } }
