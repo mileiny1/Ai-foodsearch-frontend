@@ -1,6 +1,6 @@
 // Fetch for register
 
-const REGISTER_API_URL = "http://localhost:8000/api/auth/register/";
+const REGISTER_API_URL = "https://foodfinder3-617bbae0f503.herokuapp.com/api/auth/register/";
 
 function safeJSON(response, fallback = {}) {
   return response.json().catch(() => fallback);
@@ -76,7 +76,7 @@ export async function registerUser(userData) { // userData should be an object w
 
 // Login fetch
 
-const LOGIN_API_URL = "http://localhost:8000/api/auth/login/";
+const LOGIN_API_URL = "https://foodfinder3-617bbae0f503.herokuapp.com/api/auth/login/";
 
 export async function loginUser(userData) { // userData should be an object with login identifier + password
   const rawIdentifier = userData.username || userData.email || "";
@@ -179,7 +179,7 @@ export function clearAuthSession() {
 
 // Fetch for search component
 
-const SEARCH_API_URL = "http://localhost:8000/api/food/search/";
+const SEARCH_API_URL = "https://foodfinder3-617bbae0f503.herokuapp.com/api/food/search/";
 
 export async function searchRestaurants(payload) {
   const token = localStorage.getItem('token');
@@ -208,7 +208,7 @@ export async function fetchUserProfile(token = localStorage.getItem('token')) {
     throw new Error('No authentication token found. Please log in.');
   }
 
-  const response = await fetch("http://localhost:8000/api/auth/profile/", {
+  const response = await fetch("https://foodfinder3-617bbae0f503.herokuapp.com/api/auth/profile/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -237,7 +237,7 @@ export async function updateUserProfile(updates, token = localStorage.getItem('t
     throw new Error('No authentication token found. Please log in.');
   }
 
-  const response = await fetch("http://localhost:8000/api/auth/profile/", {
+  const response = await fetch("https://foodfinder3-617bbae0f503.herokuapp.com/api/auth/profile/", {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
