@@ -31,7 +31,7 @@ This workspace contains the frontend application for AI Food Search and connects
 ## Frontend Project Base
 
 ### Tech Stack
->>>>>>> 8c4b50763dbeb5d626b037a0b1a2510304d92b5d
+
 
 - React 19
 - Vite 8
@@ -360,6 +360,7 @@ curl "http://127.0.0.1:8000/api/my-search-history/?limit=20" \
 - OpenAI API key is missing: set OPENAI_API_KEY or keep ENABLE_MOCK_SEARCH_FALLBACK=1 for local mock results.
 - Database connection errors: verify PostgreSQL credentials in .env and that PostgreSQL is running.
 - 401 Unauthorized on protected routes: ensure Authorization: Bearer <access_token> is present and token is not expired.
+- System Integration problems : Application works locally but fails after deployment.
 
 ## Frontend-Backend Integration
 
@@ -411,4 +412,4 @@ ai-foodsearch/
 
 See [LICENSE](LICENSE).
 
->>>>>>> 8c4b50763dbeb5d626b037a0b1a2510304d92b5d
+
