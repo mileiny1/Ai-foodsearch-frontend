@@ -32,12 +32,9 @@ This workspace contains the frontend application for AI Food Search and connects
 
 ### Tech Stack
 
-
-- React 19
-- Vite 8
-- React Router DOM 7
-- Bootstrap 5 + React Bootstrap
-- ESLint 9
+- React 
+- CSS
+- Bootstrap 
 
 <<<<<<< HEAD
 ## Prerequisites
