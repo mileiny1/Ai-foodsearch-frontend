@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # AI FoodSearch
 
 AI FoodSearch is a React + Vite frontend for discovering restaurants with AI-assisted search filters, account authentication, and profile management.
@@ -20,7 +20,11 @@ AI FoodSearch is a React + Vite frontend for discovering restaurants with AI-ass
   - Pages: Home, About, Login, Signup, Search, Profile
 
 ## Tech Stack
-=======
+
+<p>
+  <img src="https://skillicons.dev/icons?i=css,react,bootstrap," />
+</p>
+
 # AI Food Search + FoodFinder API
 
 This workspace contains the frontend application for AI Food Search and connects to a Django REST backend named FoodFinder API.
@@ -30,13 +34,12 @@ This workspace contains the frontend application for AI Food Search and connects
 
 ## Frontend Project Base
 
-### Tech Stack
 
 - React 
 - CSS
 - Bootstrap 
 
-<<<<<<< HEAD
+
 ## Prerequisites
 
 - Node.js 18+ (recommended)
