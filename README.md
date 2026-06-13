@@ -1,6 +1,6 @@
 # AI FoodSearch
 
-> A React + Vite web app for discovering restaurants with AI-assisted search, JWT-authenticated accounts, and full profile management.
+> A React + Vite web app for discovering restaurants with AI-assisted search, JWT authenticated accounts, and full profile management.
 
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -25,9 +25,9 @@
 
 ## Overview
 
-AI FoodSearch is the React frontend for a full-stack restaurant discovery platform. It connects to the [FoodFinder API](https://github.com/your-username/foodfinder-backend) — a Django REST backend — to provide AI-powered restaurant recommendations filtered by location, rating, price, and availability.
+AI FoodSearch is the React frontend for a fullstack restaurant discovery platform. It connects to the [FoodFinder API](https://github.com/your-username/foodfinder-backend) — a Django REST backend to provide AI-powered restaurant recommendations filtered by location, rating, price, and availability.
 
-Users can create an account, search for food nearby, and manage their profile — all through a responsive, Bootstrap-styled interface.
+Users can create an account, search for food nearby, and manage their profile  all through a responsive, Bootstrap-styled interface.
 
 ---
 
@@ -41,7 +41,7 @@ Users can create an account, search for food nearby, and manage their profile �
 **Restaurant Search**
 - Keyword-based search (e.g. pizza, sushi, tacos)
 - Location lookup powered by OpenStreetMap Nominatim
-- Auto-filled latitude/longitude from selected place
+- Auto filled latitude/longitude from selected place
 - Filters: search radius, result limit, minimum rating, open now, price range
 
 **Profile Management**
