@@ -77,25 +77,53 @@ npm run dev
 
 ```text
 ai-foodsearch/
-  public/
-  services/
-    authService.js
-  src/
-    App.jsx
-    main.jsx
-    home.jsx
-    about.jsx
-    login.jsx
-    signup.jsx
-    search.jsx
-    profile.jsx
-    navbar.jsx
-    *.css
-    *.module.css
-  index.html
-  package.json
-  vite.config.js
-  eslint.config.js
+├── dist/                       # Production build output
+│   ├── assets/
+│   ├── android-chrome-512x512.png
+│   ├── favicon.svg
+│   ├── food.jpeg
+│   ├── icons.svg
+│   ├── index.html
+│   └── login.json
+│
+├── public/                     # Static public assets
+│
+├── services/                   # API and authentication services
+│   └── authService.js
+│
+├── src/                        # Application source code
+│   ├── assets/                 # Images and static resources
+│   │
+│   ├── App.jsx                 # Main application component
+│   ├── main.jsx                # Application entry point
+│   │
+│   ├── home.jsx                # Home page
+│   ├── about.jsx               # About page
+│   ├── login.jsx               # Login page
+│   ├── signup.jsx              # Registration page
+│   ├── search.jsx              # Food search functionality
+│   ├── profile.jsx             # User profile page
+│   ├── navbar.jsx              # Navigation component
+│   │
+│   ├── App.css
+│   ├── home.module.css
+│   ├── index.css
+│   ├── login.css
+│   ├── Profile.css
+│   ├── search.css
+│   └── signup.css
+│
+├── postman/                    # API testing collections
+│
+├── .gitignore                  # Git ignored files
+├── eslint.config.js            # ESLint configuration
+├── index.html                  # Root HTML template
+├── LICENSE                     # Project license
+├── package.json                # Project dependencies and scripts
+├── package-lock.json           # Dependency lock file
+├── README.md                   # Project documentation
+├── vercel.json                 # Vercel deployment configuration
+└── vite.config.js              # Vite configuration
 ```
 
 ## Backend Integration Notes
@@ -355,12 +383,42 @@ curl "http://127.0.0.1:8000/api/my-search-history/?limit=20" \
   -H "Authorization: Bearer <access_token>"
 ```
 
-### Troubleshooting
+## Troubleshooting
 
-- OpenAI API key is missing: set OPENAI_API_KEY or keep ENABLE_MOCK_SEARCH_FALLBACK=1 for local mock results.
-- Database connection errors: verify PostgreSQL credentials in .env and that PostgreSQL is running.
-- 401 Unauthorized on protected routes: ensure Authorization: Bearer <access_token> is present and token is not expired.
-- System Integration problems : Application works locally but fails after deployment.
+### Missing OpenAI API Key
+If the application cannot connect to the OpenAI API, verify that the `OPENAI_API_KEY` environment variable is properly configured. For local development and testing, `ENABLE_MOCK_SEARCH_FALLBACK=1` can be used to enable mock search results.
+
+### Database Connection Issues
+If the application is unable to connect to PostgreSQL:
+- Verify that the database credentials in the `.env` file are correct.
+- Ensure the PostgreSQL service is running and accessible.
+- Confirm that the database URL and connection settings match the target environment.
+- Run any pending database migrations.
+
+### 401 Unauthorized Errors
+If protected endpoints return a `401 Unauthorized` response:
+- Ensure the `Authorization: Bearer <access_token>` header is included in the request.
+- Verify that the access token is valid and has not expired.
+- Confirm that authentication-related environment variables are correctly configured.
+
+### System Integration Issue: Application Works Locally but Fails After Deployment
+
+#### Problem
+The application functioned correctly in the local development environment but encountered errors after deployment. Certain features became unavailable due to differences between local and production configurations.
+
+#### Root Cause
+The issue was traced to missing environment variables and configuration settings in the production environment. Additionally, required database migrations had not been applied to the production database.
+
+#### Resolution
+- Reviewed deployment and application logs to identify the source of the issue.
+- Validated all production environment variables and application settings.
+- Verified database connectivity and configuration.
+- Applied pending database migrations.
+- Tested API endpoints and external service integrations independently to isolate failures.
+- Redeployed the application after implementing the necessary configuration updates.
+
+#### Outcome
+The application was successfully restored in the production environment, with all services, database connections, and integrated components functioning as expected.
 
 ## Frontend-Backend Integration
 
@@ -379,28 +437,47 @@ If backend host/port changes, update:
 2. Start frontend with npm run dev.
 3. Validate flow: Signup -> Login -> Search -> Profile.
 
-## Project Structure (Frontend Repo)
+## Project Structure (Backend)
 
-```text
-ai-foodsearch/
-  public/
-  services/
-    authService.js
-  src/
-    App.jsx
-    main.jsx
-    navbar.jsx
-    home.jsx
-    about.jsx
-    login.jsx
-    signup.jsx
-    search.jsx
-    profile.jsx
-  index.html
-  package.json
-  vite.config.js
-  eslint.config.js
-```
+foodfinder-backend/
+│
+├── api/                         # Main application logic
+│   ├── migrations/             # Database migration files
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_userprofile.py
+│   │   └── ...
+│   │
+│   ├── services/               # External API integrations
+│   │   ├── ai_openai.py        # OpenAI recommendation engine
+│   │   ├── geo.py              # Geolocation utilities
+│   │   ├── places_google.py    # Google Places API integration
+│   │   ├── places_yelp.py      # Yelp API integration
+│   │   └── places_router.py    # Provider selection / routing logic
+│   │
+│   ├── admin.py                # Django admin configuration
+│   ├── apps.py                 # App configuration
+│   ├── models.py               # Database models
+│   ├── serializers.py          # API serializers
+│   ├── tests.py                # Unit and integration tests
+│   ├── urls.py                 # API routes
+│   └── views.py                # API endpoints
+│
+├── foodfinder/                 # Django project configuration
+│   ├── settings.py             # Project settings
+│   ├── urls.py                 # Root URL configuration
+│   ├── asgi.py                 # ASGI deployment entry point
+│   ├── wsgi.py                 # WSGI deployment entry point
+│   └── __init__.py
+│
+├── .env                        # Environment variables
+├── .gitignore                  # Git ignored files
+├── manage.py                   # Django management utility
+├── requirements.txt            # Python dependencies
+├── Pipfile                     # Pipenv dependencies
+├── Procfile                    # Deployment configuration
+├── LICENSE
+└── README.md
+
 
 ## Session and Security Notes
 
