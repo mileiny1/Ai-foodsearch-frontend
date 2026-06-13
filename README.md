@@ -243,7 +243,7 @@ If the app silently logs you out or redirects to login:
 If the location input finds no matching places:
 
 - Ensure the search term is specific enough (e.g. `Brooklyn, NY` rather than `Brooklyn`).
-- OpenStreetMap Nominatim may rate-limit rapid requests — wait a moment and try again.
+- OpenStreetMap Nominatim may rate limit rapid requests  wait a moment and try again.
 - Confirm your network connection allows requests to `nominatim.openstreetmap.org`.
 
 ### Search Results Not Appearing
