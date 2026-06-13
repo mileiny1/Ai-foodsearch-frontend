@@ -1,83 +1,75 @@
-
 # AI FoodSearch
 
-AI FoodSearch is a React + Vite frontend for discovering restaurants with AI-assisted search filters, account authentication, and profile management.
+> A React + Vite web app for discovering restaurants with AI-assisted search, JWT-authenticated accounts, and full profile management.
+
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Routes](#routes)
+- [Backend Integration](#backend-integration)
+- [Search Flow](#search-flow)
+
+---
+
+## Overview
+
+AI FoodSearch is the React frontend for a full-stack restaurant discovery platform. It connects to the [FoodFinder API](https://github.com/your-username/foodfinder-backend) — a Django REST backend — to provide AI-powered restaurant recommendations filtered by location, rating, price, and availability.
+
+Users can create an account, search for food nearby, and manage their profile — all through a responsive, Bootstrap-styled interface.
+
+---
 
 ## Features
 
-- User authentication
-  - Sign up with extended profile fields
-  - Log in with username or email
-  - Persisted auth session in local storage
-- Restaurant search
-  - Keyword-based search (for example: pizza, sushi)
-  - Location lookup using OpenStreetMap Nominatim
-  - Auto-filled latitude/longitude from selected place
-  - Filters for radius, result limit, minimum rating, open now, and price range
-- Profile support
-  - Fetch and update user profile from backend
-- Routing
-  - Pages: Home, About, Login, Signup, Search, Profile
+**Authentication**
+- Sign up with extended profile fields (name, address, birthday, phone, gender, preferred language)
+- Log in with username or email
+- Session persisted in `localStorage` with JWT bearer tokens
+
+**Restaurant Search**
+- Keyword-based search (e.g. pizza, sushi, tacos)
+- Location lookup powered by OpenStreetMap Nominatim
+- Auto-filled latitude/longitude from selected place
+- Filters: search radius, result limit, minimum rating, open now, price range
+
+**Profile Management**
+- View and update user profile via authenticated API calls
+- Automatic session clear and re-login prompt on `401` responses
+
+---
 
 ## Tech Stack
 
-<p>
-  <img src="https://skillicons.dev/icons?i=css,react,bootstrap," />
-</p>
+| Layer | Technology |
+|---|---|
+| Framework | React 18 |
+| Build Tool | Vite |
+| Styling | CSS Modules + Bootstrap |
+| Routing | React Router |
+| HTTP / Auth | Fetch API + JWT (Bearer token) |
+| Geocoding | OpenStreetMap Nominatim |
+| Deployment | Vercel |
 
-# AI Food Search + FoodFinder API
-
-This workspace contains the frontend application for AI Food Search and connects to a Django REST backend named FoodFinder API.
-
-- Frontend in this repo: React + Vite app
-- Backend (separate repo/service): Django REST API with JWT auth and restaurant search
-
-## Frontend Project Base
-
-
-- React 
-- CSS
-- Bootstrap 
-
-
-## Prerequisites
-
-- Node.js 18+ (recommended)
-- npm 9+
-- Backend API running locally at:
-  - `http://localhost:8000/api/auth/register/`
-  - `http://localhost:8000/api/auth/login/`
-  - `http://localhost:8000/api/auth/profile/`
-  - `http://localhost:8000/api/food/search/`
-
-## Getting Started
-
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Start the development server:
-
-```bash
-npm run dev
-```
-
-3. Open the app in your browser (Vite will print the local URL, usually `http://localhost:5173`).
-
-## Available Scripts
-
-- `npm run dev` - start Vite dev server
-- `npm run build` - create production build
-- `npm run preview` - preview production build locally
-- `npm run lint` - run ESLint
+---
 
 ## Project Structure
 
-```text
+```
 ai-foodsearch/
-├── dist/                       # Production build output
+│
+├── dist/                         # Production build output (auto-generated)
 │   ├── assets/
 │   ├── android-chrome-512x512.png
 │   ├── favicon.svg
@@ -86,410 +78,207 @@ ai-foodsearch/
 │   ├── index.html
 │   └── login.json
 │
-├── public/                     # Static public assets
+├── postman/                      # API test collections for backend endpoints
 │
-├── services/                   # API and authentication services
-│   └── authService.js
+├── public/                       # Static assets served at root
 │
-├── src/                        # Application source code
-│   ├── assets/                 # Images and static resources
+├── services/                     # Centralized API communication layer
+│   └── authService.js            # Auth + search + profile API calls
+│
+├── src/                          # Application source
+│   ├── assets/                   # Images and static resources
 │   │
-│   ├── App.jsx                 # Main application component
-│   ├── main.jsx                # Application entry point
+│   ├── App.jsx                   # Root component with route definitions
+│   ├── main.jsx                  # React entry point
 │   │
-│   ├── home.jsx                # Home page
-│   ├── about.jsx               # About page
-│   ├── login.jsx               # Login page
-│   ├── signup.jsx              # Registration page
-│   ├── search.jsx              # Food search functionality
-│   ├── profile.jsx             # User profile page
-│   ├── navbar.jsx              # Navigation component
+│   ├── home.jsx                  # Landing/home page
+│   ├── about.jsx                 # About page
+│   ├── login.jsx                 # Login page
+│   ├── signup.jsx                # Registration page
+│   ├── search.jsx                # Restaurant search with filters
+│   ├── profile.jsx               # Authenticated user profile page
+│   ├── navbar.jsx                # Global navigation bar
 │   │
-│   ├── App.css
-│   ├── home.module.css
-│   ├── index.css
-│   ├── login.css
-│   ├── Profile.css
-│   ├── search.css
-│   └── signup.css
+│   ├── App.css                   # Global app styles
+│   ├── home.module.css           # Home page CSS module
+│   ├── index.css                 # Root-level styles
+│   ├── login.css                 # Login page styles
+│   ├── Profile.css               # Profile page styles
+│   ├── search.css                # Search page styles
+│   └── signup.css                # Signup page styles
 │
-├── postman/                    # API testing collections
-│
-├── .gitignore                  # Git ignored files
-├── eslint.config.js            # ESLint configuration
-├── index.html                  # Root HTML template
-├── LICENSE                     # Project license
-├── package.json                # Project dependencies and scripts
-├── package-lock.json           # Dependency lock file
-├── README.md                   # Project documentation
-├── vercel.json                 # Vercel deployment configuration
-└── vite.config.js              # Vite configuration
+├── .gitignore
+├── eslint.config.js              # ESLint configuration
+├── index.html                    # Root HTML template (Vite entry)
+├── LICENSE
+├── package.json
+├── package-lock.json
+├── README.md
+├── vercel.json                   # Vercel deployment config
+└── vite.config.js                # Vite build configuration
 ```
 
-## Backend Integration Notes
+### Key Directories at a Glance
 
-- API calls are centralized in `services/authService.js`.
-- Auth token is stored in local storage as `token` and sent as a Bearer token for protected endpoints.
-- If profile requests return `401`, the current session is cleared and the user is prompted to log in again.
+| Directory / File | Purpose |
+|---|---|
+| `src/` | All React components and page views |
+| `services/authService.js` | Single file for all API calls — auth, search, and profile |
+| `postman/` | Pre-built request collections to test the backend API |
+| `dist/` | Production build artifacts (do not edit manually) |
+| `vercel.json` | Configures SPA routing on Vercel deployment |
 
-## Search Flow Summary
+---
 
-1. User enters a food query and location text.
-2. Location text is geocoded using OpenStreetMap Nominatim.
-3. User selects a matching place to set latitude/longitude.
-4. Frontend sends a filtered search payload to `/api/food/search/`.
-5. Results are normalized and rendered as restaurant cards.
+## Getting Started
 
-## Notes
-
-- The app expects a compatible backend response format; search results are normalized to support common field variants.
-- Ensure CORS is enabled on your backend for local frontend development.
-
-## License
-
-This project is licensed under the terms in [LICENSE](LICENSE).
-=======
-### Frontend Requirements
+### Prerequisites
 
 - Node.js 18+ (Node.js 20+ recommended)
 - npm 9+
+- [FoodFinder API](https://github.com/your-username/foodfinder-backend) running locally on port `8000`
 
-### Frontend Setup
+### Installation
 
-1. Install dependencies:
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/your-username/ai-foodsearch.git
+cd ai-foodsearch
+```
+
+**2. Install dependencies**
 
 ```bash
 npm install
 ```
 
-2. Start the development server:
+**3. Start the development server**
 
 ```bash
 npm run dev
 ```
 
-3. Open the app (usually http://localhost:5173).
+The app will be available at `http://localhost:5173` (Vite will print the exact URL).
 
-### Frontend Scripts
+> Make sure the FoodFinder API backend is running on `http://localhost:8000` before using auth or search features.
+
+---
+
+## Available Scripts
 
 | Script | Description |
-| --- | --- |
-| npm run dev | Start Vite development server |
-| npm run build | Build production assets |
-| npm run preview | Preview production build locally |
-| npm run lint | Run ESLint |
+|---|---|
+| `npm run dev` | Start Vite development server with hot reload |
+| `npm run build` | Create optimized production build in `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint across the project |
 
-### Frontend Routes
+---
 
-| Route | Purpose |
-| --- | --- |
-| / and /home | Landing/home page |
-| /about | About page |
-| /login | Login page |
-| /signup | Registration page |
-| /search | Food and restaurant search |
-| /profile | User profile |
+## Routes
 
-## Backend Project Base (FoodFinder API)
+| Route | Component | Access |
+|---|---|---|
+| `/` | `home.jsx` | Public |
+| `/home` | `home.jsx` | Public |
+| `/about` | `about.jsx` | Public |
+| `/login` | `login.jsx` | Public |
+| `/signup` | `signup.jsx` | Public |
+| `/search` | `search.jsx` | Authenticated |
+| `/profile` | `profile.jsx` | Authenticated |
 
-FoodFinder is a Django REST API for user accounts and location-based restaurant search. It supports JWT authentication, profile management, and food search powered by OpenAI (with a mock fallback mode for local development).
+---
 
-### Backend Tech Stack
+## Backend Integration
 
-- Python 3.11
-- Django
-- Django REST Framework
-- SimpleJWT (JWT auth)
-- PostgreSQL
-- Pipenv
+All API communication is centralized in `services/authService.js`. The file contains the following base URLs — update these if the backend host or port changes:
 
-### Backend Features
+| Constant | Endpoint |
+|---|---|
+| `REGISTER_API_URL` | `http://localhost:8000/api/auth/register/` |
+| `LOGIN_API_URL` | `http://localhost:8000/api/auth/login/` |
+| `SEARCH_API_URL` | `http://localhost:8000/api/food/search/` |
+| Profile endpoints | `http://localhost:8000/api/auth/profile/` |
 
-- User registration with extended profile fields
-- JWT login and refresh
-- Authenticated profile read/update
-- Authenticated food search by:
-  - query
-  - latitude/longitude
-  - radius
-  - min rating
-  - open now
-  - price range
-- Search history per user
-- Cached search results
-- OpenAI-backed restaurant results with optional mock fallback
+**Auth behavior:**
+- JWT access token stored in `localStorage` as `token`
+- All protected requests send `Authorization: Bearer <token>`
+- On `401` response from profile endpoint, session is cleared and user is redirected to login
 
-### Backend Project Notes
+---
 
-The backend repository contains a nested foodfinder/ directory that appears to duplicate parts of the project. For normal development, use the root project where manage.py is in the repository root.
+## Search Flow
 
-### Backend Prerequisites
-
-- Python 3.11
-- Pipenv
-- PostgreSQL running locally (or reachable over network)
-
-### Backend Environment Variables
-
-Create a .env file in the backend repository root (same directory as manage.py):
-
-```env
-DJANGO_SECRET_KEY=dev-secret-change-me
-DEBUG=1
-
-DB_NAME=foodfinder
-DB_USER=foodfinder
-DB_PASSWORD=foodfinder
-DB_HOST=127.0.0.1
-DB_PORT=5432
-
-# OpenAI
-OPENAI_API_KEY=
-OPENAI_MODEL=gpt-4.1-mini
-
-# If true, API can return mock restaurant data when OpenAI is unavailable
-ENABLE_MOCK_SEARCH_FALLBACK=1
-
-# Optional cache backend (if unset, local in-memory cache is used)
-# REDIS_URL=redis://127.0.0.1:6379/1
-
-# Provider switch (current router path uses OpenAI)
-PLACES_PROVIDER=yelp
+```
+1. User types a food keyword (e.g. "sushi") and a location (e.g. "Brooklyn, NY")
+        ↓
+2. Location is geocoded via OpenStreetMap Nominatim → returns lat/lng candidates
+        ↓
+3. User selects a place → latitude and longitude are auto-filled into the form
+        ↓
+4. Frontend sends search payload to POST /api/food/search/ with all active filters
+        ↓
+5. Results are normalized to handle field variants and rendered as restaurant cards
 ```
 
-### Backend Local Setup
-
-1. Install dependencies:
-
-```bash
-pipenv install
-```
-
-2. Activate virtual environment:
-
-```bash
-pipenv shell
-```
-
-3. Create PostgreSQL database and user (example):
-
-```sql
-CREATE DATABASE foodfinder;
-CREATE USER foodfinder WITH PASSWORD 'foodfinder';
-GRANT ALL PRIVILEGES ON DATABASE foodfinder TO foodfinder;
-```
-
-4. Run migrations:
-
-```bash
-python manage.py migrate
-```
-
-5. Start development server:
-
-```bash
-python manage.py runserver
-```
-
-API base URL (default):
-
-```text
-http://127.0.0.1:8000/api/
-```
-
-### Running Backend Tests
-
-```bash
-python manage.py test
-```
-
-### API Endpoints
-
-#### Public
-
-- GET /api/health/
-- POST /api/auth/register/
-- GET /api/auth/register/options/
-- POST /api/auth/login/
-- POST /api/auth/refresh/
-
-#### Authenticated (Bearer token required)
-
-- GET /api/auth/profile/
-- PATCH /api/auth/profile/
-- POST /api/food/search/
-- GET /api/my-search-history/?limit=20
-
-### Auth Flow (Quick Start)
-
-1. Register user
-2. Login to receive tokens
-3. Send Authorization: Bearer <access_token> for protected endpoints
-4. Refresh token via /api/auth/refresh/ when needed
-
-### Example Requests
-
-#### Register
-
-```bash
-curl -X POST http://127.0.0.1:8000/api/auth/register/ \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "newuser@example.com",
-    "password": "securepass123",
-    "confirm_password": "securepass123",
-    "name": "New User",
-    "home_address": "123 Main St",
-    "birthday": "1996-07-20",
-    "phone_number": "+1 555 101 2020",
-    "gender": "female",
-    "preferred_language": "es"
-  }'
-```
-
-#### Login
-
-```bash
-curl -X POST http://127.0.0.1:8000/api/auth/login/ \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "newuser@example.com",
-    "password": "securepass123"
-  }'
-```
-
-#### Food Search (Authenticated)
-
-```bash
-curl -X POST http://127.0.0.1:8000/api/food/search/ \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <access_token>" \
-  -d '{
-    "query": "pizza",
-    "lat": 37.7749,
-    "lng": -122.4194,
-    "radius_m": 3000,
-    "limit": 10,
-    "min_rating": 4.0,
-    "open_now": true,
-    "price_range": [1, 2]
-  }'
-```
-
-#### Get Search History
-
-```bash
-curl "http://127.0.0.1:8000/api/my-search-history/?limit=20" \
-  -H "Authorization: Bearer <access_token>"
-```
+---
 
 ## Troubleshooting
 
-### Missing OpenAI API Key
-If the application cannot connect to the OpenAI API, verify that the `OPENAI_API_KEY` environment variable is properly configured. For local development and testing, `ENABLE_MOCK_SEARCH_FALLBACK=1` can be used to enable mock search results.
+### Backend Not Running
 
-### Database Connection Issues
-If the application is unable to connect to PostgreSQL:
-- Verify that the database credentials in the `.env` file are correct.
-- Ensure the PostgreSQL service is running and accessible.
-- Confirm that the database URL and connection settings match the target environment.
-- Run any pending database migrations.
+If search, login, or profile features return network errors, ensure the FoodFinder API is running on `http://localhost:8000` before starting the frontend. See the [FoodFinder API](https://github.com/your-username/foodfinder-backend) repo for setup instructions.
 
 ### 401 Unauthorized Errors
-If protected endpoints return a `401 Unauthorized` response:
-- Ensure the `Authorization: Bearer <access_token>` header is included in the request.
-- Verify that the access token is valid and has not expired.
-- Confirm that authentication-related environment variables are correctly configured.
 
-### System Integration Issue: Application Works Locally but Fails After Deployment
+If the app silently logs you out or redirects to login:
+
+- Your access token has likely expired — log in again to receive a fresh token.
+- Verify the backend is running and reachable at the expected URL.
+- Check that `token` exists in `localStorage` (DevTools → Application → Local Storage).
+
+### Location Search Returns No Results
+
+If the location input finds no matching places:
+
+- Ensure the search term is specific enough (e.g. `Brooklyn, NY` rather than `Brooklyn`).
+- OpenStreetMap Nominatim may rate-limit rapid requests — wait a moment and try again.
+- Confirm your network connection allows requests to `nominatim.openstreetmap.org`.
+
+### Search Results Not Appearing
+
+If restaurant cards don't render after a successful search:
+
+- Open DevTools → Network and confirm `POST /api/food/search/` returns a `200` response.
+- Verify the backend has `ENABLE_MOCK_SEARCH_FALLBACK=1` set if no OpenAI key is configured.
+- Ensure CORS is enabled on the backend for `http://localhost:5173`.
+
+### App Works Locally but Fails After Deployment
 
 #### Problem
+
 The application functioned correctly in the local development environment but encountered errors after deployment. Certain features became unavailable due to differences between local and production configurations.
 
 #### Root Cause
-The issue was traced to missing environment variables and configuration settings in the production environment. Additionally, required database migrations had not been applied to the production database.
+
+API base URLs in `services/authService.js` were hardcoded to `localhost:8000`, causing all requests to fail in the production environment where the backend runs on a different host.
 
 #### Resolution
-- Reviewed deployment and application logs to identify the source of the issue.
-- Validated all production environment variables and application settings.
-- Verified database connectivity and configuration.
-- Applied pending database migrations.
-- Tested API endpoints and external service integrations independently to isolate failures.
-- Redeployed the application after implementing the necessary configuration updates.
+
+- Updated all API base URLs in `authService.js` to point to the production backend URL.
+- Verified `vercel.json` was correctly configured to handle client-side SPA routing (prevent 404s on page refresh).
+- Confirmed the production backend had CORS enabled for the deployed frontend domain.
+- Redeployed the frontend after applying the configuration updates.
 
 #### Outcome
-The application was successfully restored in the production environment, with all services, database connections, and integrated components functioning as expected.
 
-## Frontend-Backend Integration
+The application was successfully restored in the production environment, with authentication, search, and profile features functioning as expected.
 
-This frontend currently calls backend endpoints from [services/authService.js](services/authService.js), using base URLs on http://localhost:8000.
-
-If backend host/port changes, update:
-
-- REGISTER_API_URL
-- LOGIN_API_URL
-- SEARCH_API_URL
-- profile endpoint URLs in fetchUserProfile and updateUserProfile
-
-## Local Full-Stack Run Order
-
-1. Start FoodFinder API backend on port 8000.
-2. Start frontend with npm run dev.
-3. Validate flow: Signup -> Login -> Search -> Profile.
-
-## Project Structure (Backend)
- 
-```
-foodfinder/                       # Project root
-│
-├── api/                          # Core Django application
-│   ├── migrations/               # Database migrations
-│   │   ├── __init__.py
-│   │   └── 0001_initial.py
-│   │
-│   ├── services/                 # External service integrations
-│   │   ├── __init__.py
-│   │   ├── ai_openai.py          # OpenAI recommendation engine
-│   │   ├── geo.py                # Geolocation utilities
-│   │   ├── places_google.py      # Google Places integration
-│   │   ├── places_router.py      # Provider routing logic
-│   │   └── places_yelp.py        # Yelp integration
-│   │
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── serializers.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-│
-├── foodfinder/                   # Django project configuration
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-├── .env                          # Environment variables (not committed)
-├── .gitignore
-├── LICENSE
-├── manage.py
-├── Pipfile
-├── Procfile
-├── requirements.txt
-└── README.md
-```
-
-
-## Session and Security Notes
-
-- Token and user info are stored in localStorage.
-- Protected requests include Bearer token headers.
-- On profile 401, frontend clears auth session and asks user to log in again.
+---
 
 ## License
 
-See [LICENSE](LICENSE).
+This project is licensed under the terms in [LICENSE](LICENSE).
 
 
