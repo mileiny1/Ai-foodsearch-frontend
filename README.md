@@ -25,9 +25,9 @@
 
 ## Overview
 
-AI FoodSearch is the React frontend for a fullstack restaurant discovery platform. It connects to the [FoodFinder API](https://github.com/your-username/foodfinder-backend) — a Django REST backend to provide AI-powered restaurant recommendations filtered by location, rating, price, and availability.
+AI FoodSearch is the React frontend for a fullstack restaurant discovery platform. It connects to the [FoodFinder API](https://github.com/your-username/foodfinder-backend)  a Django REST backend to provide AI powered restaurant recommendations filtered by location, rating, price, and availability.
 
-Users can create an account, search for food nearby, and manage their profile  all through a responsive, Bootstrap-styled interface.
+Users can create an account, search for food nearby, and manage their profile  all through a responsive, Bootstrap styled interface.
 
 ---
 
@@ -39,14 +39,14 @@ Users can create an account, search for food nearby, and manage their profile  a
 - Session persisted in `localStorage` with JWT bearer tokens
 
 **Restaurant Search**
-- Keyword-based search (e.g. pizza, sushi, tacos)
+- Keyword based search (e.g. pizza, sushi, tacos)
 - Location lookup powered by OpenStreetMap Nominatim
 - Auto filled latitude/longitude from selected place
 - Filters: search radius, result limit, minimum rating, open now, price range
 
 **Profile Management**
 - View and update user profile via authenticated API calls
-- Automatic session clear and re-login prompt on `401` responses
+- Automatic session clear and re login prompt on `401` responses
 
 ---
 
@@ -192,7 +192,7 @@ The app will be available at `http://localhost:5173` (Vite will print the exact 
 
 ## Backend Integration
 
-All API communication is centralized in `services/authService.js`. The file contains the following base URLs — update these if the backend host or port changes:
+All API communication is centralized in `services/authService.js`. The file contains the following base URLs  update these if the backend host or port changes:
 
 | Constant | Endpoint |
 |---|---|
@@ -234,7 +234,7 @@ If search, login, or profile features return network errors, ensure the FoodFind
 
 If the app silently logs you out or redirects to login:
 
-- Your access token has likely expired — log in again to receive a fresh token.
+- Your access token has likely expired log in again to receive a fresh token.
 - Verify the backend is running and reachable at the expected URL.
 - Check that `token` exists in `localStorage` (DevTools → Application → Local Storage).
 
@@ -267,7 +267,7 @@ API base URLs in `services/authService.js` were hardcoded to `localhost:8000`, c
 #### Resolution
 
 - Updated all API base URLs in `authService.js` to point to the production backend URL.
-- Verified `vercel.json` was correctly configured to handle client-side SPA routing (prevent 404s on page refresh).
+- Verified `vercel.json` was correctly configured to handle client side SPA routing (prevent 404s on page refresh).
 - Confirmed the production backend had CORS enabled for the deployed frontend domain.
 - Redeployed the frontend after applying the configuration updates.
 
