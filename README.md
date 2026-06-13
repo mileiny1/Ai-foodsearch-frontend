@@ -438,45 +438,48 @@ If backend host/port changes, update:
 3. Validate flow: Signup -> Login -> Search -> Profile.
 
 ## Project Structure (Backend)
-
-foodfinder-backend/
+ 
+```
+foodfinder/                       # Project root
 │
-├── api/                         # Main application logic
-│   ├── migrations/             # Database migration files
-│   │   ├── 0001_initial.py
-│   │   ├── 0002_userprofile.py
-│   │   └── ...
+├── api/                          # Core Django application
+│   ├── migrations/               # Database migrations
+│   │   ├── __init__.py
+│   │   └── 0001_initial.py
 │   │
-│   ├── services/               # External API integrations
-│   │   ├── ai_openai.py        # OpenAI recommendation engine
-│   │   ├── geo.py              # Geolocation utilities
-│   │   ├── places_google.py    # Google Places API integration
-│   │   ├── places_yelp.py      # Yelp API integration
-│   │   └── places_router.py    # Provider selection / routing logic
+│   ├── services/                 # External service integrations
+│   │   ├── __init__.py
+│   │   ├── ai_openai.py          # OpenAI recommendation engine
+│   │   ├── geo.py                # Geolocation utilities
+│   │   ├── places_google.py      # Google Places integration
+│   │   ├── places_router.py      # Provider routing logic
+│   │   └── places_yelp.py        # Yelp integration
 │   │
-│   ├── admin.py                # Django admin configuration
-│   ├── apps.py                 # App configuration
-│   ├── models.py               # Database models
-│   ├── serializers.py          # API serializers
-│   ├── tests.py                # Unit and integration tests
-│   ├── urls.py                 # API routes
-│   └── views.py                # API endpoints
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
 │
-├── foodfinder/                 # Django project configuration
-│   ├── settings.py             # Project settings
-│   ├── urls.py                 # Root URL configuration
-│   ├── asgi.py                 # ASGI deployment entry point
-│   ├── wsgi.py                 # WSGI deployment entry point
-│   └── __init__.py
+├── foodfinder/                   # Django project configuration
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
 │
-├── .env                        # Environment variables
-├── .gitignore                  # Git ignored files
-├── manage.py                   # Django management utility
-├── requirements.txt            # Python dependencies
-├── Pipfile                     # Pipenv dependencies
-├── Procfile                    # Deployment configuration
+├── .env                          # Environment variables (not committed)
+├── .gitignore
 ├── LICENSE
+├── manage.py
+├── Pipfile
+├── Procfile
+├── requirements.txt
 └── README.md
+```
 
 
 ## Session and Security Notes
