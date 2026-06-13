@@ -283,8 +283,7 @@ export default function Home() {
           <div className="fs-footer-bottom">
             <p className="fs-footer-copy">© {new Date().getFullYear()} Mileiny Nolasco. All rights reserved.</p>
             <div className="fs-footer-links">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
+              
             </div>
           </div>
         </footer>

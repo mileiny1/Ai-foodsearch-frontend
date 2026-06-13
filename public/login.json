@@ -1,0 +1,10 @@
+{
+  "login_with_username": {
+    "username": "demo_user",
+    "password": "YourStrongPassword123!"
+  },
+  "login_with_email": {
+    "email": "demo@example.com",
+    "password": "YourStrongPassword123!"
+  }
+}
